@@ -62,13 +62,6 @@ project has been used by some commercial corporations. Free and open source, dep
 + model12.h5 左右边界回归模型
 
 
-
-### 注意事项:
-
-+ Win工程中若需要使用静态库，需单独编译
-+ 本项目的C++实现和Python实现无任何关联，都为单独实现
-+ 在编译C++工程的时候必须要使用OpenCV 3.3(DNN 库)，否则无法编译 
-
 ### Python 依赖
 
 + Keras (>2.0.0)
@@ -115,52 +108,8 @@ cv2.imshow("image",image)
 cv2.waitKey(0)
 
 ```
-### Linux/Mac 编译
 
-+ 仅需要的依赖OpenCV 3.3 (需要DNN框架)
 
-```bash
-cd cpp_implementation
-mkdir build 
-cd build
-cmake ../
-sudo make -j 
-```
-
-### CPP demo
-
-```cpp
-#include "../include/Pipeline.h"
-int main(){
-    pr::PipelinePR prc("model/cascade.xml",
-                      "model/HorizonalFinemapping.prototxt","model/HorizonalFinemapping.caffemodel",
-                      "model/Segmentation.prototxt","model/Segmentation.caffemodel",
-                      "model/CharacterRecognization.prototxt","model/CharacterRecognization.caffemodel",
-                       "model/SegmentationFree.prototxt","model/SegmentationFree.caffemodel"
-                    );
-  //定义模型文件
-
-    cv::Mat image = cv::imread("/Users/yujinke/ClionProjects/cpp_ocr_demo/test.png");
-    std::vector<pr::PlateInfo> res = prc.RunPiplineAsImage(image,pr::SEGMENTATION_FREE_METHOD);
-  //使用端到端模型模型进行识别 识别结果将会保存在res里面
- 
-    for(auto st:res) {
-        if(st.confidence>0.75) {
-            std::cout << st.getPlateName() << " " << st.confidence << std::endl;
-          //输出识别结果 、识别置信度
-            cv::Rect region = st.getPlateRect();
-          //获取车牌位置
- cv::rectangle(image,cv::Point(region.x,region.y),cv::Point(region.x+region.width,region.y+region.height),cv::Scalar(255,255,0),2);
-          //画出车牌位置
-          
-        }
-    }
-
-    cv::imshow("image",image);
-    cv::waitKey(0);
-    return 0 ;
-}
-```
 
 ### 
 
@@ -189,24 +138,6 @@ int main(){
 ![image](./demo_images/test.png)
 
 ![image](./demo_images/15.jpg)
-
-#### Android示例
-
-![android](./demo_images/android.png)
-
-### 识别测试APP
-
-- 体验 Android APP：[https://fir.im/HyperLPR](https://fir.im/HyperLPR) (根据图片尺寸调整程序中的尺度，提高准确率)
-- 感谢 sundyCoder [Android 版本完善](https://github.com/sundyCoder/hyperlpr4Android) 
-
-### 数据分享
-
-车牌识别框架开发时使用的数据并不是很多，有意着可以为我们提供相关车牌数据。联系邮箱 jack-yu-business@foxmail.com。
-
-
-#### 获取帮助
-
-+ HyperLPR讨论QQ群1:673071218(已满), 群2: 746123554 ,加前请备注HyperLPR交流。
 
 
 ### 作者和贡献者信息：

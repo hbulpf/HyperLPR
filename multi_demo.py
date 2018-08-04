@@ -1,3 +1,4 @@
+#coding=utf-8
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -26,9 +27,9 @@ def drawRectBox(image,rect,addText):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Single rec demo')
+    parser = argparse.ArgumentParser(description='Multiple rec demo')
 
-    parser.add_argument('--detect_path', action='store', dest='detect_path')
+    parser.add_argument('--detect_parent_path', action='store', dest='detect_parent_path')
     parser.add_argument('--cascade_model_path', action='store', default='model/cascade.xml')
     parser.add_argument('--mapping_vertical_model_path', action='store', default='model/model12.h5')
     parser.add_argument('--ocr_plate_model_path', action='store', default='model/ocr_plate_all_gru.h5')
@@ -39,26 +40,29 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = pr.LPR(args.cascade_model_path, args.mapping_vertical_model_path, args.ocr_plate_model_path)
-    grr = cv2.imread(args.detect_path)
-    t0 = time.time()
-    image = grr
-    for pstr,confidence,rect in model.SimpleRecognizePlateByE2E(grr):
-            if confidence>0.7:
-                image = drawRectBox(image, rect, pstr+" "+str(round(confidence,3)))
-                print "plate_str:"
-                print pstr
-                print "plate_confidence"
-                print confidence
-    t = time.time() - t0
-    print "Image size :" + str(grr.shape[1])+"x"+str(grr.shape[0]) +  " need " + str(round(t*1000,2))+"ms"
 
-    if args.plot_result_flag == 'True':
-        cv2.imshow("image",image)
-        cv2.waitKey(0)
-    if args.save_result_flag == 'True':
-        (filepath, tempfilename) = os.path.split(args.detect_path)
-        (filename, extension) = os.path.splitext(tempfilename)
-        cv2.imwrite(args.save_path  + filename + ".png" , image)
+    for filename in os.listdir(args.detect_parent_path):
+        path = os.path.join(args.detect_parent_path, filename)
+        if path.endswith(".jpg") or path.endswith(".png"):
+            grr = cv2.imread(path)
+            t0 = time.time()
+            image = grr
+            for pstr, confidence, rect in model.SimpleRecognizePlateByE2E(grr):
+                if confidence > 0.7:
+                    image = drawRectBox(image, rect, pstr + " " + str(round(confidence, 3)))
+                    print "plate_str:"
+                    print pstr
+                    print "plate_confidence"
+                    print confidence
+            t = time.time() - t0
+            print "Image size :" + str(grr.shape[1]) + "x" + str(grr.shape[0]) + " need " + str(
+                round(t * 1000, 2)) + "ms"
 
-
+            if args.plot_result_flag == 'True':
+                cv2.imshow("image", image)
+                cv2.waitKey(500)
+            if args.save_result_flag == 'True':
+                (filepath, tempfilename) = os.path.split(filename)
+                (name, extension) = os.path.splitext(tempfilename)
+                cv2.imwrite(args.save_path + name + ".png", image)
 
