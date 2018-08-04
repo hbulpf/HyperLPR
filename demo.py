@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     if args.plot_result_flag == 'True' or args.plot_result_flag == 'true':
         cv2.imshow("image",image)
-        cv2.waitKey(0)
+        cv2.waitKey(2000)
     if args.save_result_flag == 'True' or args.save_result_flag == 'true':
         (filepath, tempfilename) = os.path.split(args.detect_path)
         (filename, extension) = os.path.splitext(tempfilename)
