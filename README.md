@@ -1,5 +1,6 @@
 # High Accuracy Chinese Plate Recognition Framework
 
+**Fork原项目python实现，并作部分修改**
 ### 介绍
 This research aims at simply developping plate recognition project based on deep learning methods, with low complexity and high speed. This 
 project has been used by some commercial corporations. Free and open source, deploying by Zeusee. 
@@ -18,24 +19,6 @@ project has been used by some commercial corporations. Free and open source, dep
 + [端到端(多标签分类)训练代码](https://github.com/LCorleone/hyperlpr-train_e2e)(感谢群内小伙伴的工作)。
 + [端到端(CTC)训练代码](https://github.com/armaab/hyperlpr-train)(感谢群内小伙伴工作)。
 
-### 更新
-
-+ [增加PHP车牌识别工程@coleflowers](https://github.com/zeusees/HyperLPR/tree/master/Prj-PHP) (2018.06.20)
-+ 添加的新的Python 序列模型-识别率大幅提高(尤其汉字)(2018.3.12)
-+ 添加了HyperLPR Lite 仅仅需160 行代码即可实现车牌识别(2018.3.12)
-+ 提供精确定位的车牌矩形框(2018.3.12)
-
-
-+ 增加了端到端模型的cpp实现(Linux)(2018.1.31)
-
-
-+ 增加字符分割[训练代码和字符分割介绍](https://github.com/zeusees/HyperLPR-Training)(2018.1.)
-+ 更新了Android实现，大幅提高准确率和速度 (骁龙835 (*720*x*1280*)  ~50ms )(2017.12.27)
-+ 添加了IOS版本的实现（感谢[xiaojun123456](https://github.com/xiaojun123456)的工作）
-+ 添加端到端的序列识别模型识别率大幅度提升,使得无需分割字符即可识别,识别速度提高20% (2017.11.17)
-+ 新增的端到端模型可以识别新能源车牌、教练车牌、白色警用车牌、武警车牌 (2017.11.17)
-+ 更新Windows版本的Visual Studio 2015 工程（2017.11.15）
-+ 增加cpp版本,目前仅支持标准蓝牌(需要依赖OpenCV 3.3) (2017.10.28)
 
 ### TODO
 
@@ -72,9 +55,6 @@ project has been used by some commercial corporations. Free and open source, dep
 + Scikit-image (0.13.0)
 + PIL
 
-### CPP 依赖
-
-+ Opencv 3.3
 
 ### 简单使用方式
 
@@ -111,7 +91,6 @@ cv2.waitKey(0)
 
 
 
-### 
 
 ### 可识别和待支持的车牌的类型
 
@@ -131,13 +110,6 @@ cv2.waitKey(0)
 
 
 ###### Note:由于训练的时候样本存在一些不均衡的问题,一些特殊车牌存在一定识别率低下的问题，如(使馆/港澳车牌)，会在后续的版本进行改进。
-
-
-### 测试样例
-
-![image](./demo_images/test.png)
-
-![image](./demo_images/15.jpg)
 
 
 ### 作者和贡献者信息：
