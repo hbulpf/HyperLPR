@@ -32,8 +32,8 @@ if __name__ == "__main__":
     parser.add_argument('--cascade_model_path', action='store', default='model/cascade.xml')
     parser.add_argument('--mapping_vertical_model_path', action='store', default='model/model12.h5')
     parser.add_argument('--ocr_plate_model_path', action='store', default='model/ocr_plate_all_gru.h5')
-    parser.add_argument('--save_result_flag', action='store', default=True)
-    parser.add_argument('--plot_result_flag', action='store', default=True)
+    parser.add_argument('--save_result_flag', action='store', default='True')
+    parser.add_argument('--plot_result_flag', action='store', default='True')
     parser.add_argument('--save_path', action='store', default=None)
 
     args = parser.parse_args()
@@ -52,10 +52,10 @@ if __name__ == "__main__":
     t = time.time() - t0
     print "Image size :" + str(grr.shape[1])+"x"+str(grr.shape[0]) +  " need " + str(round(t*1000,2))+"ms"
 
-    if args.plot_result_flag == 'True':
+    if args.plot_result_flag == 'True' or args.plot_result_flag == 'true':
         cv2.imshow("image",image)
         cv2.waitKey(0)
-    if args.save_result_flag == 'True':
+    if args.save_result_flag == 'True' or args.save_result_flag == 'true':
         (filepath, tempfilename) = os.path.split(args.detect_path)
         (filename, extension) = os.path.splitext(tempfilename)
         cv2.imwrite(args.save_path  + filename + ".png" , image)
