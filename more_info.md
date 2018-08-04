@@ -16,8 +16,7 @@ Github : https://github.com/icepoint666/HyperLPR
 例如：
 ```shell
 $ python demo.py --detect_path dataset/1.jpg \
-> --save_result_flag True \
-> --plot_result_flag True \
+> --plot_result_flag False \
 > --save_path /home/icepoint/Pictures/
 ```
 ```
