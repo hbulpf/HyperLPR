@@ -40,8 +40,6 @@ $ python demo.py --detect_path dataset/1.jpg \
 示例：
 ```shell
 $ python multi_demo.py --detect_parent_path dataset/ \
-> --save_result_flag True \
-> --plot_result_flag True \
 > --save_path /home/icepoint/Pictures/
 ```
 参数：
