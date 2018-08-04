@@ -13,4 +13,3 @@ sudo pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
 sudo pip install tensorflow -i https://pypi.tuna.tsinghua.edu.cn/simple
 sudo pip install keras -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-git clone https://github.com/icepoint666/HyperLPR.git
