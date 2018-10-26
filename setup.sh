@@ -4,6 +4,7 @@ sudo python get-pip.py
 
 sudo pip install pillow -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+sudo apt-get install libopencv-dev -y
 sudo apt-get install python-numpy -y
 sudo apt-get install python-scipy -y
 sudo apt-get install python-matplotlib -y
