@@ -59,7 +59,7 @@ $ python multi_demo.py --detect_parent_path dataset/ \
  - save_path: 识别结果图片存储路径folder (None表示不存储)  
 			default = None
 ```
-# 2. 实现原理
+## 2. 实现原理
 #### 入口文件 demo.py(部分)：
 ```python
 import HyperLPRLite as pr
