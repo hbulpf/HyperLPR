@@ -96,7 +96,7 @@ class LPR():
         self.modelSeqRec = self.model_seq_rec(model_seq_rec)
 ```
 
-**(3)**参数 model_detection 就是文件 model/cascade.xml
+**(3)** 参数 model_detection 就是文件 model/cascade.xml
 用到了 opencv2的CascadeClassifier()函数
 **cv2.CascadeClassifier()**
 参数输入.xml或者.yaml文件，表示加载模型
@@ -131,7 +131,7 @@ for pstr,confidence,rect in model.SimpleRecognizePlateByE2E(grr):
 下面有详细说明detectPlateRough函数(5)是返回图像中所有车牌的边框在图片中的bbox
 返回的是一个表示车牌区域坐标边框的list
 
-for循环中，对于每个识别出来的车牌用到**filemappingVertical()**函数(6)
+for循环中，对于每个识别出来的车牌用到 **filemappingVertical()** 函数(6)
 
 **(5)** detectPlateRough函数
 ```python
@@ -191,11 +191,15 @@ top_bottom_padding_rate: 表示要裁剪掉图片的上下部占比
         return image,rect
 ```
 输入参数：
+
 裁剪的车牌区域图像（Mat类型），rect也是裁剪的车牌部分的图像（Mat类型）
 
 实现处理：
+
 1.将原来车牌图像resize大小：66*16*3
+
 2.将原来灰度图颜色通道[0, 255]转化为float类型[0,1]
+
 3.将输入66*16(float),输入进模型进行测试self.modelFineMapping.predict
 
 **(7)** modelFineMapping模型
@@ -207,7 +211,7 @@ class LPR():
         self.modelFineMapping.load_weights(model_finemapping)
         self.modelSeqRec = self.model_seq_rec(model_seq_rec)
 ```
-**model_finemapping()**函数
+**model_finemapping()** 函数
 ```python
     def model_finemapping(self):
         input = Input(shape=[16, 66, 3])  # change this shape to [None,None,3] to enable arbitraty shape input
@@ -225,10 +229,13 @@ class LPR():
         return model
 ```
 keras网络模型：对车牌的左右边界进行回归
+
 通过modelFineMapping.loadweights()函数加载模型文件
+
 通过modelFineMapping.predict输出网络结果
 
-输入：16*66*3 tensor
+输入：16×66×3 tensor
+
 输出：长度为2的tensor
 
 
@@ -254,8 +261,10 @@ keras网络模型：对车牌的左右边界进行回归
 1.将前面的(136, 36)图像resize成(164, 48)
 2.将图像转置，输入
 
-**(9)**modelSecRec模型
+**(9)** modelSecRec模型
+
 基于GRU的序列模型从OCR模型中修改的网络模型
+
 **model_sec_rec函数**
 ```python
     def model_seq_rec(self,model_path):
