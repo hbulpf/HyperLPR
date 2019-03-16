@@ -49,6 +49,7 @@ if __name__ == "__main__":
             image = grr
             for pstr, confidence, rect in model.SimpleRecognizePlateByE2E(grr):
                 if confidence > 0.7:
+                    pstr = pstr.encode('utf-8')
                     image = drawRectBox(image, rect, pstr + " " + str(round(confidence, 3)))
                     print "plate_str:"
                     print pstr
